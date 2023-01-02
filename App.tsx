@@ -1,4 +1,11 @@
-import { SafeAreaView, StatusBar, StyleSheet, Text, View } from "react-native";
+import {
+  FlatList,
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { ColorBox } from "./components";
 
 import type { Box } from "./typings";
@@ -40,9 +47,11 @@ const App = () => {
         <Text style={styles.headerText}>
           Here are some boxes of different colours
         </Text>
-        {BOXES.map((box) => (
-          <ColorBox key={box.id} box={box} />
-        ))}
+        <FlatList
+          data={BOXES}
+          renderItem={({ item }) => <ColorBox box={item} />}
+          keyExtractor={(item) => item.id}
+        />
       </View>
 
       {/* Status bar for android */}
