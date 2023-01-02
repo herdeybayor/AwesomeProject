@@ -1,38 +1,34 @@
-import {
-  SafeAreaView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { SafeAreaView, StatusBar, StyleSheet, Text, View } from "react-native";
+import { ColorBox } from "./components";
+
+import type { Box } from "./typings";
 
 const App = () => {
-  const BOXES = [
+  const BOXES: Box[] = [
     {
-      id: 1,
-      colour: {
+      id: "1",
+      color: {
         name: "Cyan",
         hex: "#2aa198",
       },
     },
     {
-      id: 2,
-      colour: {
+      id: "2",
+      color: {
         name: "Blue",
         hex: "#268bd2",
       },
     },
     {
-      id: 3,
-      colour: {
+      id: "3",
+      color: {
         name: "Magenta",
         hex: "#d33682",
       },
     },
     {
-      id: 4,
-      colour: {
+      id: "4",
+      color: {
         name: "Orange",
         hex: "#cb4b16",
       },
@@ -45,14 +41,7 @@ const App = () => {
           Here are some boxes of different colours
         </Text>
         {BOXES.map((box) => (
-          <TouchableOpacity
-            key={box.id}
-            style={[{ backgroundColor: box.colour.hex }, styles.box]}
-          >
-            <Text style={styles.boxText}>
-              {box.colour.name} {box.colour.hex}
-            </Text>
-          </TouchableOpacity>
+          <ColorBox key={box.id} box={box} />
         ))}
       </View>
 
@@ -76,15 +65,5 @@ const styles = StyleSheet.create({
   headerText: {
     fontSize: 20,
     fontWeight: "bold",
-  },
-  box: {
-    padding: 10,
-    marginTop: 10,
-    borderRadius: 5,
-  },
-  boxText: {
-    textAlign: "center",
-    color: "white",
-    fontWeight: "600",
   },
 });
