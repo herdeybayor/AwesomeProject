@@ -10,9 +10,23 @@ const ColorBox = ({ box }: Props) => {
   return (
     <TouchableOpacity
       key={box.id}
-      style={[{ backgroundColor: box.color.hex }, styles.box]}
+      style={[
+        styles.box,
+        {
+          backgroundColor: box.color.hex,
+        },
+      ]}
     >
-      <Text style={styles.boxText}>
+      <Text
+        style={[
+          styles.boxText,
+          {
+            color: ["Base2", "Base3"].includes(box.color.name)
+              ? "black"
+              : "white",
+          },
+        ]}
+      >
         {box.color.name} {box.color.hex}
       </Text>
     </TouchableOpacity>
