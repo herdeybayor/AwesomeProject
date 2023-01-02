@@ -1,3 +1,4 @@
+import { NavigationContainer } from "@react-navigation/native";
 import {
   FlatList,
   SafeAreaView,
@@ -126,22 +127,24 @@ const App = () => {
     },
   ];
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
-        <Text style={styles.headerText}>
-          Here are some boxes of different colours
-        </Text>
-        <FlatList
-          data={BOXES}
-          renderItem={({ item }) => <ColorBox box={item} />}
-          keyExtractor={(item) => item.id}
-          ListEmptyComponent={<Text>No boxes</Text>}
-        />
-      </View>
+    <NavigationContainer>
+      <SafeAreaView style={styles.safeArea}>
+        <View style={styles.container}>
+          <Text style={styles.headerText}>
+            Here are some boxes of different colours
+          </Text>
+          <FlatList
+            data={BOXES}
+            renderItem={({ item }) => <ColorBox box={item} />}
+            keyExtractor={(item) => item.id}
+            ListEmptyComponent={<Text>No boxes</Text>}
+          />
+        </View>
 
-      {/* Status bar for android */}
-      <StatusBar barStyle={"dark-content"} backgroundColor="white" />
-    </SafeAreaView>
+        {/* Status bar for android */}
+        <StatusBar barStyle={"dark-content"} backgroundColor="white" />
+      </SafeAreaView>
+    </NavigationContainer>
   );
 };
 
