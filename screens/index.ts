@@ -1,2 +1,2 @@
 export { default as HomeScreen } from "./Home";
-export { default as LoginScreen } from "./ColorPalette";
+export { default as ColorPalette } from "./ColorPalette";

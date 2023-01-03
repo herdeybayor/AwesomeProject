@@ -5,3 +5,8 @@ export interface Box {
     hex: string;
   };
 }
+
+export type RootStackParamList = {
+  Home: undefined;
+  ColorPalette: { title: string; data: Box[] };
+};

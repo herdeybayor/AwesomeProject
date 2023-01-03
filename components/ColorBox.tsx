@@ -21,9 +21,10 @@ const ColorBox = ({ box }: Props) => {
         style={[
           styles.boxText,
           {
-            color: ["Base2", "Base3"].includes(box.color.name)
-              ? "black"
-              : "white",
+            color:
+              parseInt(box.color.hex.replace("#", ""), 16) > 0xffffff / 2
+                ? "black"
+                : "white",
           },
         ]}
       >
