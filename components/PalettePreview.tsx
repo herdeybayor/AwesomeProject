@@ -27,7 +27,6 @@ const PalettePreview = ({ handlePress, palette }: Props) => {
         renderItem={({ item }) => (
           <View style={[styles.color, { backgroundColor: item.color.hex }]} />
         )}
-        horizontal={true}
       />
     </TouchableOpacity>
   );
