@@ -7,10 +7,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 type Props = NativeStackScreenProps<RootStackParamList, "ColorPalette">;
 
-const ColorPalette = ({ route, navigation }: Props) => {
-  React.useLayoutEffect(() => {
-    navigation.setOptions({ title: route.params.title });
-  }, [navigation, route]);
+const ColorPalette = ({ route }: Props) => {
   return (
     <View style={styles.container}>
       <FlatList
