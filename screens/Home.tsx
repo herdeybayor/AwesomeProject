@@ -61,6 +61,7 @@ const HomeScreen = ({ navigation }: Props) => {
   return (
     <FlatList
       style={styles.list}
+      contentContainerStyle={{ alignItems: "center" }}
       data={colorPalettes}
       keyExtractor={(item) => item.title}
       renderItem={({ item: box }) => (
