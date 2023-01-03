@@ -1,4 +1,11 @@
-import { FlatList, StyleSheet, Text } from "react-native";
+import {
+  ActivityIndicator,
+  FlatList,
+  RefreshControl,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import React from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Box, ColorPalette, RootStackParamList } from "../typings";
@@ -12,7 +19,10 @@ interface IData {
 }
 
 const HomeScreen = ({ navigation }: Props) => {
-  const [colorPalettes, setColorPalettes] = React.useState<IData[]>([]);
+  const [colorPalettes, setColorPalettes] = React.useState<IData[] | null>(
+    // eslint-disable-next-line prettier/prettier
+    null,
+  );
   const [isRefreshing, setIsRefreshing] = React.useState(false);
 
   const fetchColorPalettes = React.useCallback(async () => {
@@ -39,6 +49,15 @@ const HomeScreen = ({ navigation }: Props) => {
     fetchColorPalettes();
   }, [fetchColorPalettes]);
 
+  //  Loading Screen
+  if (!colorPalettes) {
+    return (
+      <View style={styles.container}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
+  }
+
   return (
     <FlatList
       style={styles.list}
@@ -50,9 +69,15 @@ const HomeScreen = ({ navigation }: Props) => {
           palette={box}
         />
       )}
-      refreshing={isRefreshing}
-      onRefresh={fetchColorPalettes}
       ListEmptyComponent={<Text>No boxes</Text>}
+      refreshControl={
+        <RefreshControl
+          refreshing={isRefreshing}
+          onRefresh={fetchColorPalettes}
+          colors={["#0000ff", "#689F38"]}
+          progressBackgroundColor="#ffffff"
+        />
+      }
     />
   );
 };
@@ -60,6 +85,11 @@ const HomeScreen = ({ navigation }: Props) => {
 export default HomeScreen;
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
   list: {
     flex: 1,
     padding: 10,
