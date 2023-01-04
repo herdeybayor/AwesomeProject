@@ -27,21 +27,27 @@ const HomeScreen = ({ navigation }: Props) => {
 
   const fetchColorPalettes = React.useCallback(async () => {
     setIsRefreshing(true);
-    const response = await fetch(
-      // eslint-disable-next-line prettier/prettier
-      "https://color-palette-api.kadikraman.now.sh/palettes",
-    );
-    if (response.ok) {
-      const palettes: ColorPalette[] = await response.json();
-      const boxes: IData[] = palettes.map(({ paletteName, colors }) => ({
-        title: paletteName,
-        data: colors.map(({ colorName: name, hexCode: hex }, i) => ({
-          id: i.toString(),
-          color: { name, hex },
-        })),
-      }));
+    try {
+      const response = await fetch(
+        // eslint-disable-next-line prettier/prettier
+        "https://color-palette-api.kadikraman.now.sh/palettes",
+      );
+      if (response.ok) {
+        const palettes: ColorPalette[] = await response.json();
+        const boxes: IData[] = palettes.map(({ paletteName, colors }) => ({
+          title: paletteName,
+          data: colors.map(({ colorName: name, hexCode: hex }, i) => ({
+            id: i.toString(),
+            color: { name, hex },
+          })),
+        }));
+        setIsRefreshing(false);
+        setColorPalettes(boxes);
+      }
+    } catch (error) {
       setIsRefreshing(false);
-      setColorPalettes(boxes);
+      setColorPalettes([]);
+      console.log(error);
     }
   }, []);
 
