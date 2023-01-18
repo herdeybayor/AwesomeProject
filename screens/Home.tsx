@@ -20,7 +20,6 @@ interface IData {
 
 const HomeScreen = ({ navigation }: Props) => {
   const [colorPalettes, setColorPalettes] = React.useState<IData[] | null>(
-    // eslint-disable-next-line prettier/prettier
     null,
   );
   const [isRefreshing, setIsRefreshing] = React.useState(false);
@@ -29,7 +28,6 @@ const HomeScreen = ({ navigation }: Props) => {
     setIsRefreshing(true);
     try {
       const response = await fetch(
-        // eslint-disable-next-line prettier/prettier
         "https://color-palette-api.kadikraman.now.sh/palettes",
       );
       if (response.ok) {
