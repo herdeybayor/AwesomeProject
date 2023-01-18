@@ -2,10 +2,10 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import { ColorBox } from "../components";
-import { RootStackParamList } from "../typings";
+import { MainStackParamList } from "../typings";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
-type Props = NativeStackScreenProps<RootStackParamList, "ColorPalette">;
+type Props = NativeStackScreenProps<MainStackParamList, "ColorPalette">;
 
 const ColorPalette = ({ route }: Props) => {
   return (
