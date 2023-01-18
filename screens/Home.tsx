@@ -1,3 +1,5 @@
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import React from "react";
 import {
   ActivityIndicator,
   FlatList,
@@ -6,12 +8,11 @@ import {
   Text,
   View,
 } from "react-native";
-import React from "react";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { Box, ColorPalette, RootStackParamList } from "../typings";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import { PalettePreview } from "../components";
+import { Box, ColorPalette, MainStackParamList } from "../typings";
 
-type Props = NativeStackScreenProps<RootStackParamList, "Home">;
+type Props = NativeStackScreenProps<MainStackParamList, "Home">;
 
 interface IData {
   title: string;
@@ -82,6 +83,11 @@ const HomeScreen = ({ navigation }: Props) => {
           colors={["#0000ff", "#689F38"]}
           progressBackgroundColor="#ffffff"
         />
+      }
+      ListHeaderComponent={
+        <TouchableOpacity onPress={() => navigation.push("AddNewPalette")}>
+          <Text style={{ fontSize: 18 }}>Add a color scheme</Text>
+        </TouchableOpacity>
       }
     />
   );

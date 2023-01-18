@@ -7,8 +7,14 @@ export interface Box {
 }
 
 export type RootStackParamList = {
+  Main: MainStackParamList;
+  AddNewPalette: undefined;
+};
+
+export type MainStackParamList = {
   Home: undefined;
   ColorPalette: { title: string; data: Box[] };
+  AddNewPalette: undefined;
 };
 
 export interface ColorPalette {
