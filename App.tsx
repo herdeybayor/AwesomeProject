@@ -9,13 +9,17 @@ const App = () => {
   const RootStack = createNativeStackNavigator<RootStackParamList>();
   return (
     <NavigationContainer>
-      <RootStack.Navigator screenOptions={{ presentation: "modal" }}>
+      <RootStack.Navigator>
         <RootStack.Screen
           name="Main"
           component={MainStackScreen}
           options={{ headerShown: false }}
         />
-        <RootStack.Screen name="AddNewPalette" component={AddNewPaletteModal} />
+        <RootStack.Screen
+          name="AddNewPalette"
+          component={AddNewPaletteModal}
+          options={{ presentation: "modal", title: "Add New Palette" }}
+        />
       </RootStack.Navigator>
       <StatusBar />
     </NavigationContainer>

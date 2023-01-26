@@ -12,7 +12,7 @@ export type RootStackParamList = {
 };
 
 export type MainStackParamList = {
-  Home: undefined;
+  Home: { newPalette: ColorPalette };
   ColorPalette: { title: string; data: Box[] };
   AddNewPalette: undefined;
 };

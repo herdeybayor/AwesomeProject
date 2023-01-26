@@ -6,9 +6,9 @@ import {
   RefreshControl,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import { PalettePreview } from "../components";
 import { Box, ColorPalette, MainStackParamList } from "../typings";
 
@@ -19,7 +19,29 @@ interface IData {
   data: Box[];
 }
 
-const HomeScreen = ({ navigation }: Props) => {
+const HomeScreen: React.FC<Props> = ({ navigation, route }) => {
+  const { newPalette } = route.params || {};
+  React.useEffect(() => {
+    if (newPalette) {
+      console.log(newPalette);
+      setColorPalettes((prev) => {
+        if (!prev) {
+          return null;
+        }
+        const newBox: IData = {
+          title: newPalette.paletteName,
+          data: newPalette.colors.map(
+            ({ colorName: name, hexCode: hex }, i) => ({
+              id: i.toString(),
+              color: { name, hex },
+            }),
+          ),
+        };
+        return [newBox, ...prev];
+      });
+    }
+  }, [newPalette]);
+
   const [colorPalettes, setColorPalettes] = React.useState<IData[] | null>(
     null,
   );
@@ -86,7 +108,7 @@ const HomeScreen = ({ navigation }: Props) => {
       }
       ListHeaderComponent={
         <TouchableOpacity onPress={() => navigation.push("AddNewPalette")}>
-          <Text style={{ fontSize: 18 }}>Add a color scheme</Text>
+          <Text style={styles.text}>Add a color scheme</Text>
         </TouchableOpacity>
       }
     />
@@ -105,5 +127,10 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
     backgroundColor: "white",
+  },
+  text: {
+    fontSize: 24,
+    color: "#1492a3",
+    fontWeight: "bold",
   },
 });
