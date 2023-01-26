@@ -112,8 +112,14 @@ const AddNewPaletteModal = ({ navigation }: Props) => {
 
         {/* Submit Button */}
         <TouchableOpacity
-          style={{ backgroundColor: "teal", padding: 15, borderRadius: 8 }}
+          style={{
+            backgroundColor:
+              selectedColors.length < 3 || !paletteName ? "#99999950" : "teal",
+            padding: 15,
+            borderRadius: 8,
+          }}
           onPress={handleSubmit}
+          disabled={selectedColors.length < 3 || !paletteName}
         >
           <Text
             style={{
