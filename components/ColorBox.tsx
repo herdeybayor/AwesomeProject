@@ -4,9 +4,10 @@ import { Box } from "../typings";
 
 type Props = {
   box: Box;
+  handlePress: (box: Box) => void;
 };
 
-const ColorBox = ({ box }: Props) => {
+const ColorBox = ({ box, handlePress }: Props) => {
   return (
     <TouchableOpacity
       key={box.id}
@@ -16,6 +17,7 @@ const ColorBox = ({ box }: Props) => {
           backgroundColor: box.color.hex,
         },
       ]}
+      onPress={() => handlePress(box)}
     >
       <Text
         style={[

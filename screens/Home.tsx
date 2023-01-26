@@ -23,7 +23,6 @@ const HomeScreen: React.FC<Props> = ({ navigation, route }) => {
   const { newPalette } = route.params || {};
   React.useEffect(() => {
     if (newPalette) {
-      console.log(newPalette);
       setColorPalettes((prev) => {
         if (!prev) {
           return null;
