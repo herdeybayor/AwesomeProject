@@ -1,3 +1,5 @@
+import { NavigatorScreenParams } from "@react-navigation/native";
+
 export interface Box {
   id: string;
   color: {
@@ -7,7 +9,7 @@ export interface Box {
 }
 
 export type RootStackParamList = {
-  Main: MainStackParamList;
+  Main: NavigatorScreenParams<MainStackParamList> | undefined;
   AddNewPalette: undefined;
 };
 
