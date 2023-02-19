@@ -43,19 +43,17 @@ const AddNewPaletteModal = ({ navigation }: Props) => {
       return Alert.alert("Please select at least 3 colors");
     }
     const newPalette = {
+      id: Math.floor(Math.random() * 1000000),
       paletteName,
       colors: selectedColors,
     };
-    // If you want to navigate to a screen in the same stack
-    navigation.navigate("Home", { newPalette });
 
-    // If you want to navigate to a nested screen
-    // navigation.navigate("Main", {
-    //   screen: "Home",
-    //   params: {
-    //     newPalette,
-    //   },
-    // });
+    navigation.navigate("Main", {
+      screen: "Home",
+      params: {
+        newPalette,
+      },
+    });
 
     // NOTE: Both of the above methods will work
   }, [paletteName, selectedColors, navigation]);
